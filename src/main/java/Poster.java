@@ -11,6 +11,7 @@ public class Poster {
         this.name = name;
         this.genre = genre;
     }
+
     public Poster[] films = new Poster[0];
 
     public void save(Poster film) {
@@ -26,7 +27,37 @@ public class Poster {
         return films;
     }
 
-    public Poster [] findLast() {
-        return films;
+    public int countRecord = 10;
+
+    public Poster[] findLast() {
+        Poster[] tmp = new Poster[0];
+        if (films.length < countRecord) {
+            tmp = new Poster[films.length];
+            for (int i = 0; i < films.length; i++) {
+                tmp[i] = films[films.length - 1 - i];
+            }
+        } else {
+            tmp = new Poster[countRecord];
+            for (int i = 0; i < countRecord; i++) {
+                tmp[i] = films[films.length - 1 - i];
+            }
+        }
+        return tmp;
+    }
+
+    public Poster[] findLast(int countRecord) {
+        Poster[] tmp = new Poster[0];
+        if (films.length < countRecord) {
+            tmp = new Poster[films.length];
+            for (int i = 0; i < films.length; i++) {
+                tmp[i] = films[films.length - 1 - i];
+            }
+        } else {
+            tmp = new Poster[countRecord];
+            for (int i = 0; i < countRecord; i++) {
+                tmp[i] = films[films.length - 1 - i];
+            }
+        }
+        return tmp;
     }
 }
