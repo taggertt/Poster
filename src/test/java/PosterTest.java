@@ -21,11 +21,11 @@ public class PosterTest {
     Poster film15 = new Poster(15, "Card house", "serial");
 
 
-    Poster testFilms = new Poster();
-    Poster testCinema = new Poster();
+    ManagerPoster testFilms = new ManagerPoster();
+    ManagerPoster testCinema = new ManagerPoster(12);
 
     @BeforeEach
-            public void setup() {
+    public void setup() {
         testFilms.save(film1);
         testFilms.save(film2);
         testFilms.save(film3);
@@ -55,45 +55,19 @@ public class PosterTest {
     }
 
     @Test
-    public void shouldBeFindAll(){
+    public void shouldBeDefaultFindLastUnderLimit() {
 
-        Poster [] expected = {film1, film2, film3};
-        Poster [] actual = testFilms.findAll();
+        Poster[] expected = {film3, film2, film1};
+        Poster[] actual = testFilms.findLast();
         Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test
-    public void shouldBeDefaultFindLastUnderLimit(){
+    public void shouldBeSetFindLastMoreLimit() {
 
-    Poster [] expected = {film3, film2, film1};
-    Poster [] actual = testFilms.findLast();
-    Assertions.assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldBeDefaultFindLastMoreLimit(){
-
-        Poster [] expected = {film15, film14, film13, film12, film11, film10, film9,
-                film8, film7, film6};
-        Poster [] actual = testCinema.findLast();
-        Assertions.assertArrayEquals(expected, actual);
-    }
-
-
-    @Test
-    public void shouldBeSetFindLastMoreLimit(){
-
-    Poster [] expected = {film15, film14, film13, film12, film11, film10, film9,
-            film8, film7, film6, film5, film4, film3, film2};
-    Poster [] actual = testCinema.findLast(14);
-    Assertions.assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldBeSetFindLastUnderLimit(){
-
-        Poster [] expected = {film3, film2, film1};
-        Poster [] actual = testFilms.findLast(15);
+        Poster[] expected = {film15, film14, film13, film12, film11, film10, film9,
+                film8, film7, film6, film5, film4};
+        Poster[] actual = testCinema.findLast();
         Assertions.assertArrayEquals(expected, actual);
     }
 }
